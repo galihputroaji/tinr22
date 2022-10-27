@@ -22,7 +22,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
   @override
   void initState() {
     super.initState();
-    emailAddressController = TextEditingController(text: currentUserEmail);
+    emailAddressController = TextEditingController();
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'changePassword'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -111,7 +111,6 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Email',
-                            hintText: 'Email Anda...',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color:
