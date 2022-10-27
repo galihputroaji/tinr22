@@ -9,7 +9,7 @@ import 'schema/jadwal_record.dart';
 import 'schema/mata_kuliah_record.dart';
 import 'schema/materi_record.dart';
 import 'schema/tugas_record.dart';
-import 'schema/photo_collection_record.dart';
+import 'schema/foto_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -22,7 +22,7 @@ export 'schema/jadwal_record.dart';
 export 'schema/mata_kuliah_record.dart';
 export 'schema/materi_record.dart';
 export 'schema/tugas_record.dart';
-export 'schema/photo_collection_record.dart';
+export 'schema/foto_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -234,42 +234,42 @@ Future<FFFirestorePage<TugasRecord>> queryTugasRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query PhotoCollectionRecords (as a Stream and as a Future).
-Stream<List<PhotoCollectionRecord>> queryPhotoCollectionRecord({
+/// Functions to query FotoRecords (as a Stream and as a Future).
+Stream<List<FotoRecord>> queryFotoRecord({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollection(
-      PhotoCollectionRecord.collection,
-      PhotoCollectionRecord.serializer,
+      FotoRecord.collection,
+      FotoRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<List<PhotoCollectionRecord>> queryPhotoCollectionRecordOnce({
+Future<List<FotoRecord>> queryFotoRecordOnce({
   Query Function(Query)? queryBuilder,
   int limit = -1,
   bool singleRecord = false,
 }) =>
     queryCollectionOnce(
-      PhotoCollectionRecord.collection,
-      PhotoCollectionRecord.serializer,
+      FotoRecord.collection,
+      FotoRecord.serializer,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
     );
 
-Future<FFFirestorePage<PhotoCollectionRecord>> queryPhotoCollectionRecordPage({
+Future<FFFirestorePage<FotoRecord>> queryFotoRecordPage({
   Query Function(Query)? queryBuilder,
   DocumentSnapshot? nextPageMarker,
   required int pageSize,
   required bool isStream,
 }) =>
     queryCollectionPage(
-      PhotoCollectionRecord.collection,
-      PhotoCollectionRecord.serializer,
+      FotoRecord.collection,
+      FotoRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

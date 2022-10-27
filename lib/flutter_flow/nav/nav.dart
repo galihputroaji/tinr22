@@ -275,6 +275,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'adm_addMhs',
               path: 'admAddMhs',
               builder: (context, params) => AdmAddMhsWidget(),
+            ),
+            FFRoute(
+              name: 'addPhoto',
+              path: 'addPhoto',
+              builder: (context, params) => AddPhotoWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
