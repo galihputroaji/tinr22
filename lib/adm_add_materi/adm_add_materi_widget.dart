@@ -250,7 +250,8 @@ class _AdmAddMateriWidgetState extends State<AdmAddMateriWidget> {
                               color: FlutterFlowTheme.of(context).tertiaryColor,
                               size: 15,
                             ),
-                            fillColor: Color(0x00111417),
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             elevation: 2,
                             borderColor:
                                 FlutterFlowTheme.of(context).tertiaryColor,

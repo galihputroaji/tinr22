@@ -59,9 +59,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
         automaticallyImplyLeading: false,
         leading: InkWell(
           onTap: () async {
@@ -100,7 +100,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 1,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(0),
                         bottomRight: Radius.circular(0),
@@ -224,16 +224,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 hintText: 'Your full name...',
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
@@ -259,8 +259,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Lexend Deca',
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -278,16 +278,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 labelText: 'Nomor HP',
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
@@ -313,8 +313,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Lexend Deca',
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -331,14 +331,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               labelText: 'Email',
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(8),
@@ -364,7 +366,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 .bodyText1
                                 .override(
                                   fontFamily: 'Lexend Deca',
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -396,9 +399,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 size: 15,
                               ),
-                              fillColor: FlutterFlowTheme.of(context).alternate,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               elevation: 2,
-                              borderColor: Color(0x00FFFFFF),
+                              borderColor:
+                                  FlutterFlowTheme.of(context).primaryText,
                               borderWidth: 2,
                               borderRadius: 8,
                               margin:
@@ -418,16 +423,16 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 labelText: 'Domisili',
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     width: 2,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
@@ -453,8 +458,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   .bodyText1
                                   .override(
                                     fontFamily: 'Lexend Deca',
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
@@ -495,7 +500,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                               options: FFButtonOptions(
                                 width: 340,
                                 height: 60,
-                                color: FlutterFlowTheme.of(context).alternate,
+                                color:
+                                    FlutterFlowTheme.of(context).tertiaryColor,
                                 textStyle: FlutterFlowTheme.of(context)
                                     .subtitle2
                                     .override(

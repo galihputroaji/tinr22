@@ -80,6 +80,8 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
                 foto: uploadedFileUrl,
               );
               await FotoRecord.collection.doc().set(fotoCreateData);
+              logFirebaseEvent('IconButton_navigate_back');
+              context.pop();
             },
           ),
         ],
@@ -129,9 +131,7 @@ class _AddPhotoWidgetState extends State<AddPhotoWidget> {
                     final selectedMedia =
                         await selectMediaWithSourceBottomSheet(
                       context: context,
-                      maxWidth: 1000.00,
-                      maxHeight: 1000.00,
-                      imageQuality: 95,
+                      imageQuality: 100,
                       allowPhoto: true,
                       backgroundColor:
                           FlutterFlowTheme.of(context).primaryBackground,

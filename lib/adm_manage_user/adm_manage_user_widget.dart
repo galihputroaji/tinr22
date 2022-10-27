@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/ubah_jabatan_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -60,24 +61,29 @@ class _AdmManageUserWidgetState extends State<AdmManageUserWidget> {
               ),
         ),
         actions: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-            child: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              borderWidth: 1,
-              buttonSize: 60,
-              icon: Icon(
-                Icons.add,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 30,
-              ),
-              onPressed: () async {
-                logFirebaseEvent('ADM_MANAGE_USER_PAGE_add_ICN_ON_TAP');
-                logFirebaseEvent('IconButton_navigate_to');
+          Visibility(
+            visible: valueOrDefault(currentUserDocument?.role, '') == 'admin',
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+              child: AuthUserStreamWidget(
+                child: FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30,
+                  borderWidth: 1,
+                  buttonSize: 60,
+                  icon: Icon(
+                    Icons.add,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 30,
+                  ),
+                  onPressed: () async {
+                    logFirebaseEvent('ADM_MANAGE_USER_PAGE_add_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
 
-                context.pushNamed('adm_addMhs');
-              },
+                    context.pushNamed('adm_addMhs');
+                  },
+                ),
+              ),
             ),
           ),
         ],

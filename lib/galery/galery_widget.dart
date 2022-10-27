@@ -1,11 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_expanded_image_view.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 
 class GaleryWidget extends StatefulWidget {
   const GaleryWidget({Key? key}) : super(key: key);
@@ -29,27 +31,6 @@ class _GaleryWidgetState extends State<GaleryWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFF01A8C9),
-      floatingActionButton: Visibility(
-        visible: (valueOrDefault(currentUserDocument?.role, '') == 'admin') &&
-            (valueOrDefault(currentUserDocument?.role, '') == 'media'),
-        child: AuthUserStreamWidget(
-          child: FloatingActionButton(
-            onPressed: () async {
-              logFirebaseEvent('GALERY_FloatingActionButton_affnbijj_ON_');
-              logFirebaseEvent('FloatingActionButton_navigate_to');
-
-              context.pushNamed('addPhoto');
-            },
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            elevation: 8,
-            child: Icon(
-              Icons.add,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
-            ),
-          ),
-        ),
-      ),
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
@@ -80,22 +61,36 @@ class _GaleryWidgetState extends State<GaleryWidget> {
               ),
         ),
         actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.replay_outlined,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
-            ),
-            onPressed: () async {
-              logFirebaseEvent('GALERY_PAGE_replay_outlined_ICN_ON_TAP');
-              logFirebaseEvent('IconButton_navigate_to');
+          Visibility(
+            visible: valueOrDefault(currentUserDocument?.role, '') == 'media',
+            child: AuthUserStreamWidget(
+              child: FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 60,
+                icon: Icon(
+                  Icons.add,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  size: 30,
+                ),
+                onPressed: () async {
+                  logFirebaseEvent('GALERY_PAGE_add_ICN_ON_TAP');
+                  logFirebaseEvent('IconButton_navigate_to');
 
-              context.pushNamed('Galery');
-            },
+                  context.pushNamed(
+                    'addPhoto',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 400),
+                      ),
+                    },
+                  );
+                },
+              ),
+            ),
           ),
         ],
         centerTitle: true,
@@ -143,11 +138,37 @@ class _GaleryWidgetState extends State<GaleryWidget> {
                         itemBuilder: (context, gridViewIndex) {
                           final gridViewFotoRecord =
                               gridViewFotoRecordList[gridViewIndex];
-                          return Image.network(
-                            gridViewFotoRecord.foto!,
-                            width: 100,
-                            height: 100,
-                            fit: BoxFit.cover,
+                          return InkWell(
+                            onTap: () async {
+                              logFirebaseEvent(
+                                  'GALERY_PAGE_Image_suauqa4r_ON_TAP');
+                              logFirebaseEvent('Image_expand_image');
+                              await Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: FlutterFlowExpandedImageView(
+                                    image: Image.network(
+                                      gridViewFotoRecord.foto!,
+                                      fit: BoxFit.contain,
+                                    ),
+                                    allowRotation: false,
+                                    tag: gridViewFotoRecord.foto!,
+                                    useHeroAnimation: true,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Hero(
+                              tag: gridViewFotoRecord.foto!,
+                              transitionOnUserGestures: true,
+                              child: Image.network(
+                                gridViewFotoRecord.foto!,
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height * 1,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           );
                         },
                       );
