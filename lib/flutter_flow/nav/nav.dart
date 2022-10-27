@@ -78,11 +78,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
           routes: [
             FFRoute(
-              name: 'createAccount',
-              path: 'createAccount',
-              builder: (context, params) => CreateAccountWidget(),
-            ),
-            FFRoute(
               name: 'editProfile',
               path: 'editProfile',
               builder: (context, params) => EditProfileWidget(),
@@ -91,12 +86,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'login',
               path: 'login',
               builder: (context, params) => LoginWidget(),
-            ),
-            FFRoute(
-              name: 'profilePageOld',
-              path: 'profilePageOld',
-              requireAuth: true,
-              builder: (context, params) => ProfilePageOldWidget(),
             ),
             FFRoute(
               name: 'changePassword',
@@ -151,11 +140,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'adm_addMateri',
               path: 'admAddMateri',
               builder: (context, params) => AdmAddMateriWidget(),
-            ),
-            FFRoute(
-              name: 'completProfile',
-              path: 'completProfile',
-              builder: (context, params) => CompletProfileWidget(),
             ),
             FFRoute(
               name: 'adm_ListMateri',

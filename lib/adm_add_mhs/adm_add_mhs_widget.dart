@@ -4,7 +4,6 @@ import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -27,6 +26,7 @@ class _AdmAddMhsWidgetState extends State<AdmAddMhsWidget> {
   TextEditingController? addNamaController;
   TextEditingController? addNomorController;
   TextEditingController? addDomisiliController;
+  TextEditingController? addIndexController;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -40,6 +40,7 @@ class _AdmAddMhsWidgetState extends State<AdmAddMhsWidget> {
     addPassVisibility = false;
     addNamaController = TextEditingController();
     addNomorController = TextEditingController();
+    addIndexController = TextEditingController();
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'adm_addMhs'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -52,6 +53,7 @@ class _AdmAddMhsWidgetState extends State<AdmAddMhsWidget> {
     addPassController?.dispose();
     addNamaController?.dispose();
     addNomorController?.dispose();
+    addIndexController?.dispose();
     super.dispose();
   }
 
@@ -467,6 +469,56 @@ class _AdmAddMhsWidgetState extends State<AdmAddMhsWidget> {
                               Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                                child: TextFormField(
+                                  controller: addIndexController,
+                                  autofocus: true,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    labelText: 'Index Jabatan',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiaryColor,
+                                      ),
+                                  keyboardType: TextInputType.number,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     logFirebaseEvent(
@@ -483,22 +535,25 @@ class _AdmAddMhsWidgetState extends State<AdmAddMhsWidget> {
                                       return;
                                     }
 
-                                    logFirebaseEvent('Button_backend_call');
-
-                                    final usersUpdateData =
+                                    final usersCreateData =
                                         createUsersRecordData(
-                                      displayName: addEmailController!.text,
+                                      email: addEmailController!.text,
+                                      displayName: addNamaController!.text,
                                       photoUrl: FFAppState().defaultProfile,
-                                      createdTime: getCurrentTimestamp,
-                                      phoneNumber: currentPhoneNumber,
+                                      phoneNumber: addNomorController!.text,
                                       domisili: addDomisiliController!.text,
                                       gender: addGenderValue,
                                       npm: int.parse(addNPMController!.text),
-                                      pejabat: false,
+                                      role: 'user',
+                                      createdTime: getCurrentTimestamp,
                                       jabatan: 'Anggota',
+                                      pejabat: false,
+                                      indexJabatan:
+                                          int.parse(addIndexController!.text),
                                     );
-                                    await currentUserReference!
-                                        .update(usersUpdateData);
+                                    await UsersRecord.collection
+                                        .doc(user.uid)
+                                        .update(usersCreateData);
 
                                     context.goNamedAuth('home', mounted);
                                   },

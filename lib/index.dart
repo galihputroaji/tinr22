@@ -1,9 +1,6 @@
 // Export pages
-export 'create_account/create_account_widget.dart' show CreateAccountWidget;
 export 'edit_profile/edit_profile_widget.dart' show EditProfileWidget;
 export 'login/login_widget.dart' show LoginWidget;
-export 'profile_page_old/profile_page_old_widget.dart'
-    show ProfilePageOldWidget;
 export 'change_password/change_password_widget.dart' show ChangePasswordWidget;
 export 'jadwal/jadwal_widget.dart' show JadwalWidget;
 export 'detail_tugas/detail_tugas_widget.dart' show DetailTugasWidget;
@@ -15,7 +12,6 @@ export 'm_k_pengantar_sistem_digital/m_k_pengantar_sistem_digital_widget.dart'
     show MKPengantarSistemDigitalWidget;
 export 'galery/galery_widget.dart' show GaleryWidget;
 export 'adm_add_materi/adm_add_materi_widget.dart' show AdmAddMateriWidget;
-export 'complet_profile/complet_profile_widget.dart' show CompletProfileWidget;
 export 'adm_list_materi/adm_list_materi_widget.dart' show AdmListMateriWidget;
 export 'adm_edit_materi/adm_edit_materi_widget.dart' show AdmEditMateriWidget;
 export 'adm_init/adm_init_widget.dart' show AdmInitWidget;
