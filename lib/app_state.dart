@@ -21,6 +21,8 @@ class FFAppState {
   String appLogo = '';
 
   String defaultProfile = '';
+
+  int currentVersion = 11;
 }
 
 LatLng? _latLngFromString(String? val) {

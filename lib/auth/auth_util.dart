@@ -137,6 +137,7 @@ Future beginPhoneAuth({
     onCodeSent();
     return;
   }
+  final completer = Completer<bool>();
   // If you'd like auto-verification, without the user having to enter the SMS
   // code manually. Follow these instructions:
   // * For Android: https://firebase.google.com/docs/auth/android/phone-auth?authuser=0#enable-app-verification (SafetyNet set up)
@@ -156,16 +157,20 @@ Future beginPhoneAuth({
       // );
     },
     verificationFailed: (e) {
+      completer.complete(false);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Error: [error]'.replaceAll('[error]', e.message!)),
       ));
     },
     codeSent: (verificationId, _) {
       _phoneAuthVerificationCode = verificationId;
+      completer.complete(true);
       onCodeSent();
     },
     codeAutoRetrievalTimeout: (_) {},
   );
+
+  return completer.future;
 }
 
 Future verifySmsCode({

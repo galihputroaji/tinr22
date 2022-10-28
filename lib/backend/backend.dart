@@ -10,6 +10,7 @@ import 'schema/mata_kuliah_record.dart';
 import 'schema/materi_record.dart';
 import 'schema/tugas_record.dart';
 import 'schema/foto_record.dart';
+import 'schema/misc_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -23,6 +24,7 @@ export 'schema/mata_kuliah_record.dart';
 export 'schema/materi_record.dart';
 export 'schema/tugas_record.dart';
 export 'schema/foto_record.dart';
+export 'schema/misc_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Stream<List<UsersRecord>> queryUsersRecord({
@@ -270,6 +272,48 @@ Future<FFFirestorePage<FotoRecord>> queryFotoRecordPage({
     queryCollectionPage(
       FotoRecord.collection,
       FotoRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query MiscRecords (as a Stream and as a Future).
+Stream<List<MiscRecord>> queryMiscRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MiscRecord.collection,
+      MiscRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MiscRecord>> queryMiscRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MiscRecord.collection,
+      MiscRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<MiscRecord>> queryMiscRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      MiscRecord.collection,
+      MiscRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

@@ -245,6 +245,7 @@ class _AdmManageUserWidgetState extends State<AdmManageUserWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .white,
+                                                        fontSize: 12,
                                                       ),
                                             ),
                                           ],
@@ -312,6 +313,26 @@ class _AdmManageUserWidgetState extends State<AdmManageUserWidget> {
                                       decoration: BoxDecoration(
                                         color: Color(0xFF090F13),
                                       ),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Edit',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  fontSize: 12,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     Container(
                                       width: MediaQuery.of(context).size.width *
@@ -344,6 +365,7 @@ class _AdmManageUserWidgetState extends State<AdmManageUserWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .white,
+                                                        fontSize: 12,
                                                       ),
                                             ),
                                           ],

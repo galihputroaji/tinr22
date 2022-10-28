@@ -528,7 +528,7 @@ class _AdmAddMhsWidgetState extends State<AdmAddMhsWidget> {
 
                                     final user = await createAccountWithEmail(
                                       context,
-                                      addEmailController!.text,
+                                      addNPMController!.text,
                                       addPassController!.text,
                                     );
                                     if (user == null) {

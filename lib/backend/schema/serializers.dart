@@ -7,6 +7,7 @@ import 'mata_kuliah_record.dart';
 import 'materi_record.dart';
 import 'tugas_record.dart';
 import 'foto_record.dart';
+import 'misc_record.dart';
 
 import 'index.dart';
 
@@ -23,6 +24,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   MateriRecord,
   TugasRecord,
   FotoRecord,
+  MiscRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

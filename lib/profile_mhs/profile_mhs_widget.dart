@@ -2,6 +2,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -146,7 +147,11 @@ class _ProfileMhsWidgetState extends State<ProfileMhsWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          widget.namaMhs!,
+                                          widget.namaMhs!.maybeHandleOverflow(
+                                            maxChars: 35,
+                                            replacement: '…',
+                                          ),
+                                          maxLines: 1,
                                           style: FlutterFlowTheme.of(context)
                                               .title2
                                               .override(
@@ -168,7 +173,10 @@ class _ProfileMhsWidgetState extends State<ProfileMhsWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          widget.npmMHS!,
+                                          valueOrDefault<String>(
+                                            widget.npmMHS,
+                                            'NPM ?',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle2
                                               .override(
@@ -331,99 +339,103 @@ class _ProfileMhsWidgetState extends State<ProfileMhsWidget> {
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.9,
-                          height: 200,
-                          constraints: BoxConstraints(
-                            maxWidth: MediaQuery.of(context).size.width * 0.9,
-                            maxHeight: 600,
-                          ),
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context).tertiaryColor,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 4,
-                                color: Color(0x301D2429),
-                                offset: Offset(0, 1),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 10, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 5, 0),
-                                        child: FaIcon(
-                                          FontAwesomeIcons.venusMars,
-                                          color: FlutterFlowTheme.of(context)
-                                              .white,
-                                          size: 18,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: 200,
+                            constraints: BoxConstraints(
+                              maxWidth: MediaQuery.of(context).size.width * 0.9,
+                              maxHeight: 600,
+                            ),
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 10, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 5, 0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.venusMars,
+                                            color: FlutterFlowTheme.of(context)
+                                                .white,
+                                            size: 18,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        widget.genderMhs!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .white,
-                                              fontSize: 16,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 15, 0, 0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 10, 0),
-                                        child: FaIcon(
-                                          FontAwesomeIcons.locationArrow,
-                                          color: FlutterFlowTheme.of(context)
-                                              .white,
-                                          size: 20,
+                                        Text(
+                                          widget.genderMhs!,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .white,
+                                                fontSize: 16,
+                                              ),
                                         ),
-                                      ),
-                                      Text(
-                                        widget.domisiliMhs!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .white,
-                                              fontSize: 16,
-                                            ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 15, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 0, 10, 0),
+                                          child: FaIcon(
+                                            FontAwesomeIcons.locationArrow,
+                                            color: FlutterFlowTheme.of(context)
+                                                .white,
+                                            size: 20,
+                                          ),
+                                        ),
+                                        AutoSizeText(
+                                          widget.domisiliMhs!
+                                              .maybeHandleOverflow(
+                                                  maxChars: 35),
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .white,
+                                                fontSize: 16,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -200,6 +200,8 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                             email: emailAddressController!.text,
                             context: context,
                           );
+                          logFirebaseEvent('Button_navigate_back');
+                          context.pop();
                         },
                         text: 'Atur Ulang',
                         options: FFButtonOptions(

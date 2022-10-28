@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DetailMKWidget extends StatefulWidget {
@@ -13,12 +14,14 @@ class DetailMKWidget extends StatefulWidget {
     this.dosenMK,
     this.jamMK,
     this.ruangMK,
+    this.hpDosen,
   }) : super(key: key);
 
   final String? namaMK;
   final String? dosenMK;
   final String? jamMK;
   final String? ruangMK;
+  final int? hpDosen;
 
   @override
   _DetailMKWidgetState createState() => _DetailMKWidgetState();
@@ -69,7 +72,7 @@ class _DetailMKWidgetState extends State<DetailMKWidget> {
                 fontFamily: 'Outfit',
                 color: FlutterFlowTheme.of(context).tertiaryColor,
                 fontSize: 18,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
               ),
         ),
         actions: [],
@@ -99,14 +102,15 @@ class _DetailMKWidgetState extends State<DetailMKWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
+                      padding: EdgeInsetsDirectional.fromSTEB(15, 15, 10, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Dosen Pembimbing',
@@ -122,8 +126,12 @@ class _DetailMKWidgetState extends State<DetailMKWidget> {
                                     ),
                               ),
                               Text(
-                                widget.dosenMK!,
+                                widget.dosenMK!.maybeHandleOverflow(
+                                  maxChars: 20,
+                                  replacement: '…',
+                                ),
                                 textAlign: TextAlign.center,
+                                maxLines: 1,
                                 style: FlutterFlowTheme.of(context)
                                     .title3
                                     .override(
@@ -135,6 +143,32 @@ class _DetailMKWidgetState extends State<DetailMKWidget> {
                                     ),
                               ),
                             ],
+                          ),
+                          Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFF25D366),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30,
+                              borderWidth: 1,
+                              buttonSize: 40,
+                              icon: FaIcon(
+                                FontAwesomeIcons.whatsapp,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
+                                size: 20,
+                              ),
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'DETAIL_M_K_PAGE_whatsapp_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_launch_u_r_l');
+                                await launchURL(
+                                    'https://wa.me/${widget.hpDosen?.toString()}');
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -209,8 +243,30 @@ class _DetailMKWidgetState extends State<DetailMKWidget> {
               endIndent: 10,
               color: FlutterFlowTheme.of(context).tertiaryColor,
             ),
+            Container(
+              width: double.infinity,
+              height: 40,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primaryBackground,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Materi MK',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Inter',
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
               child: StreamBuilder<List<MateriRecord>>(
                 stream: queryMateriRecord(
                   queryBuilder: (materiRecord) =>
@@ -257,47 +313,65 @@ class _DetailMKWidgetState extends State<DetailMKWidget> {
                             ),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 12, 0, 0),
-                                      child: Text(
-                                        listViewMateriRecord.nama!,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              fontSize: 18,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          listViewMateriRecord.nama!
+                                              .maybeHandleOverflow(
+                                            maxChars: 35,
+                                            replacement: '…',
+                                          ),
+                                          maxLines: 2,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily: 'Inter',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontSize: 14,
+                                              ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 5, 0, 0),
+                                          child: Text(
+                                            dateTimeFormat(
+                                              'd/M/y',
+                                              listViewMateriRecord.createdAt!,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
                                             ),
-                                      ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  color: Color(0xB2FFFFFF),
+                                                  fontSize: 12,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 2),
-                                    child: FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30,
-                                      borderWidth: 1,
-                                      buttonSize: 60,
-                                      icon: Icon(
-                                        Icons.book,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        size: 30,
-                                      ),
-                                      onPressed: () {
-                                        print('IconButton pressed ...');
-                                      },
-                                    ),
+                                  Icon(
+                                    Icons.chevron_right,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    size: 24,
                                   ),
                                 ],
                               ),

@@ -216,14 +216,33 @@ class _ListMhsWidgetState extends State<ListMhsWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              child: Image.network(
-                                                listViewUsersRecord.photoUrl!,
-                                                width: 60,
-                                                height: 60,
-                                                fit: BoxFit.cover,
+                                            Card(
+                                              clipBehavior:
+                                                  Clip.antiAliasWithSaveLayer,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(2, 2, 2, 2),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  child: Image.network(
+                                                    valueOrDefault<String>(
+                                                      listViewUsersRecord
+                                                          .photoUrl,
+                                                      'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
+                                                    ),
+                                                    width: 60,
+                                                    height: 60,
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                             Padding(
@@ -232,7 +251,9 @@ class _ListMhsWidgetState extends State<ListMhsWidget> {
                                               child: Text(
                                                 listViewUsersRecord.displayName!
                                                     .maybeHandleOverflow(
-                                                        maxChars: 12),
+                                                  maxChars: 12,
+                                                  replacement: '…',
+                                                ),
                                                 maxLines: 1,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -404,7 +425,10 @@ class _ListMhsWidgetState extends State<ListMhsWidget> {
                                                         listViewUsersRecord
                                                             .displayName!
                                                             .maybeHandleOverflow(
-                                                                maxChars: 25),
+                                                          maxChars: 28,
+                                                          replacement: '…',
+                                                        ),
+                                                        maxLines: 1,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

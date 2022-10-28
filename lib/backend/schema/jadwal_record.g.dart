@@ -84,6 +84,12 @@ class _$JadwalRecordSerializer implements StructuredSerializer<JadwalRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
+    value = object.hpDosen;
+    if (value != null) {
+      result
+        ..add('hpDosen')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -147,6 +153,10 @@ class _$JadwalRecordSerializer implements StructuredSerializer<JadwalRecord> {
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
+        case 'hpDosen':
+          result.hpDosen = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -180,6 +190,8 @@ class _$JadwalRecord extends JadwalRecord {
   @override
   final DocumentReference<Object?>? materiMKref;
   @override
+  final int? hpDosen;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$JadwalRecord([void Function(JadwalRecordBuilder)? updates]) =>
@@ -195,6 +207,7 @@ class _$JadwalRecord extends JadwalRecord {
       this.index,
       this.tugasMKref,
       this.materiMKref,
+      this.hpDosen,
       this.ffRef})
       : super._();
 
@@ -218,6 +231,7 @@ class _$JadwalRecord extends JadwalRecord {
         index == other.index &&
         tugasMKref == other.tugasMKref &&
         materiMKref == other.materiMKref &&
+        hpDosen == other.hpDosen &&
         ffRef == other.ffRef;
   }
 
@@ -230,14 +244,18 @@ class _$JadwalRecord extends JadwalRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc($jc(0, mk.hashCode), dosen.hashCode),
-                                    jam.hashCode),
-                                ruang.hashCode),
-                            hari.hashCode),
-                        sks.hashCode),
-                    index.hashCode),
-                tugasMKref.hashCode),
-            materiMKref.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, mk.hashCode),
+                                            dosen.hashCode),
+                                        jam.hashCode),
+                                    ruang.hashCode),
+                                hari.hashCode),
+                            sks.hashCode),
+                        index.hashCode),
+                    tugasMKref.hashCode),
+                materiMKref.hashCode),
+            hpDosen.hashCode),
         ffRef.hashCode));
   }
 
@@ -253,6 +271,7 @@ class _$JadwalRecord extends JadwalRecord {
           ..add('index', index)
           ..add('tugasMKref', tugasMKref)
           ..add('materiMKref', materiMKref)
+          ..add('hpDosen', hpDosen)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -300,6 +319,10 @@ class JadwalRecordBuilder
   set materiMKref(DocumentReference<Object?>? materiMKref) =>
       _$this._materiMKref = materiMKref;
 
+  int? _hpDosen;
+  int? get hpDosen => _$this._hpDosen;
+  set hpDosen(int? hpDosen) => _$this._hpDosen = hpDosen;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -320,6 +343,7 @@ class JadwalRecordBuilder
       _index = $v.index;
       _tugasMKref = $v.tugasMKref;
       _materiMKref = $v.materiMKref;
+      _hpDosen = $v.hpDosen;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -352,6 +376,7 @@ class JadwalRecordBuilder
             index: index,
             tugasMKref: tugasMKref,
             materiMKref: materiMKref,
+            hpDosen: hpDosen,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

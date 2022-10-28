@@ -11,6 +11,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(JadwalRecord.serializer)
       ..add(MataKuliahRecord.serializer)
       ..add(MateriRecord.serializer)
+      ..add(MiscRecord.serializer)
       ..add(TugasRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(

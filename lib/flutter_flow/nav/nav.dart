@@ -117,21 +117,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : HomeWidget(),
             ),
             FFRoute(
-              name: 'MKFisika',
-              path: 'mKFisika',
-              builder: (context, params) => MKFisikaWidget(),
-            ),
-            FFRoute(
-              name: 'MKBahasaindonesia',
-              path: 'mKBahasaindonesia',
-              builder: (context, params) => MKBahasaindonesiaWidget(),
-            ),
-            FFRoute(
-              name: 'MKPengantarSistemDigital',
-              path: 'mKPengantarSistemDigital',
-              builder: (context, params) => MKPengantarSistemDigitalWidget(),
-            ),
-            FFRoute(
               name: 'Galery',
               path: 'galery',
               builder: (context, params) => GaleryWidget(),
@@ -180,27 +165,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => AdmListTugasWidget(),
             ),
             FFRoute(
-              name: 'MKAgama',
-              path: 'mKAgama',
-              builder: (context, params) => MKAgamaWidget(),
-            ),
-            FFRoute(
-              name: 'MKKalkulus',
-              path: 'mKKalkulus',
-              builder: (context, params) => MKKalkulusWidget(),
-            ),
-            FFRoute(
-              name: 'MKDasarInfrastrukturTeknologiInformasi',
-              path: 'mKDasarInfrastrukturTeknologiInformasi',
-              builder: (context, params) =>
-                  MKDasarInfrastrukturTeknologiInformasiWidget(),
-            ),
-            FFRoute(
-              name: 'MKAlogaritmaDanPemograman',
-              path: 'mKAlogaritmaDanPemograman',
-              builder: (context, params) => MKAlogaritmaDanPemogramanWidget(),
-            ),
-            FFRoute(
               name: 'adm_editTugas',
               path: 'admEditTugas',
               builder: (context, params) => AdmEditTugasWidget(
@@ -234,14 +198,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'MKBahasainggris',
-              path: 'mKBahasaInggris',
-              builder: (context, params) => MKBahasainggrisWidget(),
-            ),
-            FFRoute(
-              name: 'MKPancasila',
-              path: 'mKPancasila',
-              builder: (context, params) => MKPancasilaWidget(),
+              name: 'infoPage',
+              path: 'infoPage',
+              builder: (context, params) => InfoPageWidget(),
             ),
             FFRoute(
               name: 'UserProfile',
@@ -250,11 +209,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'UserProfile')
                   : UserProfileWidget(),
-            ),
-            FFRoute(
-              name: 'infoPage',
-              path: 'infoPage',
-              builder: (context, params) => InfoPageWidget(),
             ),
             FFRoute(
               name: 'listMK',
@@ -269,17 +223,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 dosenMK: params.getParam('dosenMK', ParamType.String),
                 jamMK: params.getParam('jamMK', ParamType.String),
                 ruangMK: params.getParam('ruangMK', ParamType.String),
+                hpDosen: params.getParam('hpDosen', ParamType.int),
               ),
             ),
             FFRoute(
               name: 'adm_addMhs',
               path: 'admAddMhs',
               builder: (context, params) => AdmAddMhsWidget(),
-            ),
-            FFRoute(
-              name: 'addPhoto',
-              path: 'addPhoto',
-              builder: (context, params) => AddPhotoWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

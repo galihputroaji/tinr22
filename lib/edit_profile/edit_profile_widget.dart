@@ -24,6 +24,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   bool isMediaUploading = false;
   String uploadedFileUrl = '';
 
+  TextEditingController? editProfileNPMController;
   TextEditingController? editProfileNamaController;
   TextEditingController? editProfileNomorController;
   TextEditingController? editProfileEmailController;
@@ -38,6 +39,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     editProfileDomisiliController = TextEditingController(
         text: valueOrDefault(currentUserDocument?.domisili, ''));
     editProfileEmailController = TextEditingController(text: currentUserEmail);
+    editProfileNPMController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.npm, 0).toString());
     editProfileNamaController =
         TextEditingController(text: currentUserDisplayName);
     editProfileNomorController =
@@ -50,6 +53,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   void dispose() {
     editProfileDomisiliController?.dispose();
     editProfileEmailController?.dispose();
+    editProfileNPMController?.dispose();
     editProfileNamaController?.dispose();
     editProfileNomorController?.dispose();
     super.dispose();
@@ -210,6 +214,63 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 ),
                               ),
                             ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                          child: AuthUserStreamWidget(
+                            child: TextFormField(
+                              controller: editProfileNPMController,
+                              readOnly:
+                                  valueOrDefault(currentUserDocument?.npm, 0) !=
+                                      null,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'NPM',
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFC62828),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFC62828),
+                                    width: 2,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                    20, 24, 0, 24),
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
                           ),
                         ),
                         Padding(

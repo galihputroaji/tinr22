@@ -182,8 +182,11 @@ class _ListMKWidgetState extends State<ListMKWidget>
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        listViewJadwalRecord
-                                                            .mk!,
+                                                        listViewJadwalRecord.mk!
+                                                            .maybeHandleOverflow(
+                                                          maxChars: 25,
+                                                          replacement: '…',
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -230,6 +233,12 @@ class _ListMKWidgetState extends State<ListMKWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .tertiaryColor,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
                                                         logFirebaseEvent(
@@ -263,6 +272,12 @@ class _ListMKWidgetState extends State<ListMKWidget>
                                                               listViewJadwalRecord
                                                                   .ruang,
                                                               ParamType.String,
+                                                            ),
+                                                            'hpDosen':
+                                                                serializeParam(
+                                                              listViewJadwalRecord
+                                                                  .hpDosen,
+                                                              ParamType.int,
                                                             ),
                                                           }.withoutNulls,
                                                           extra: <String,
@@ -304,7 +319,7 @@ class _ListMKWidgetState extends State<ListMKWidget>
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(8),
+                                                                .circular(10),
                                                       ),
                                                     ),
                                                   ),

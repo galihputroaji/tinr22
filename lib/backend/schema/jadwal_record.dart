@@ -28,6 +28,8 @@ abstract class JadwalRecord
 
   DocumentReference? get materiMKref;
 
+  int? get hpDosen;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -39,7 +41,8 @@ abstract class JadwalRecord
     ..ruang = ''
     ..hari = ''
     ..sks = ''
-    ..index = 0;
+    ..index = 0
+    ..hpDosen = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('jadwal');
@@ -72,6 +75,7 @@ Map<String, dynamic> createJadwalRecordData({
   int? index,
   DocumentReference? tugasMKref,
   DocumentReference? materiMKref,
+  int? hpDosen,
 }) {
   final firestoreData = serializers.toFirestore(
     JadwalRecord.serializer,
@@ -85,7 +89,8 @@ Map<String, dynamic> createJadwalRecordData({
         ..sks = sks
         ..index = index
         ..tugasMKref = tugasMKref
-        ..materiMKref = materiMKref,
+        ..materiMKref = materiMKref
+        ..hpDosen = hpDosen,
     ),
   );
 

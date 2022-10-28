@@ -1,5 +1,6 @@
 import '../backend/backend.dart';
 import '../components/confirm_delete_widget.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -15,6 +16,7 @@ class AdmListMateriWidget extends StatefulWidget {
 }
 
 class _AdmListMateriWidgetState extends State<AdmListMateriWidget> {
+  String? dropDownValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -119,22 +121,124 @@ class _AdmListMateriWidgetState extends State<AdmListMateriWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Materi Aktif',
-                          style:
-                              FlutterFlowTheme.of(context).bodyText1.override(
-                                    fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context).white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.25,
+                                    height: 1,
+                                    decoration: BoxDecoration(),
                                   ),
+                                ],
+                              ),
+                              Text(
+                                'Materi Aktif',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyText1
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    height: 30,
+                                    decoration: BoxDecoration(),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 5, 0),
+                                      child: StreamBuilder<List<MateriRecord>>(
+                                        stream: queryMateriRecord(),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child: SpinKitDualRing(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .white,
+                                                  size: 50,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<MateriRecord>
+                                              dropDownMateriRecordList =
+                                              snapshot.data!;
+                                          return FlutterFlowDropDown(
+                                            options: dropDownMateriRecordList
+                                                .map((e) => e.mk!)
+                                                .toList()
+                                                .toList(),
+                                            onChanged: (val) => setState(
+                                                () => dropDownValue = val),
+                                            width: 50,
+                                            height: 30,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1
+                                                    .override(
+                                                      fontFamily: 'Inter',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                    ),
+                                            hintText: 'Filter',
+                                            icon: Icon(
+                                              Icons.filter_list_sharp,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 18,
+                                            ),
+                                            elevation: 2,
+                                            borderColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            borderWidth: 0,
+                                            borderRadius: 10,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12, 4, 12, 4),
+                                            hidesUnderline: true,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                 ),
                 StreamBuilder<List<MateriRecord>>(
-                  stream: queryMateriRecord(),
+                  stream: queryMateriRecord(
+                    queryBuilder: (materiRecord) => materiRecord
+                        .where('mk', isEqualTo: dropDownValue)
+                        .orderBy('createdAt', descending: true),
+                  ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {

@@ -142,13 +142,18 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
                                     24, 140, 0, 0),
                                 child: AuthUserStreamWidget(
                                   child: Text(
-                                    currentUserDisplayName,
+                                    currentUserDisplayName.maybeHandleOverflow(
+                                      maxChars: 25,
+                                      replacement: '…',
+                                    ),
+                                    maxLines: 1,
                                     style: FlutterFlowTheme.of(context)
                                         .title2
                                         .override(
                                           fontFamily: 'Outfit',
                                           color: FlutterFlowTheme.of(context)
                                               .white,
+                                          fontSize: 20,
                                         ),
                                   ),
                                 ),
@@ -157,16 +162,21 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
                                 alignment: AlignmentDirectional(-1, 0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      24, 174, 0, 0),
-                                  child: Text(
-                                    currentUserEmail,
-                                    textAlign: TextAlign.start,
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText2
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: Color(0xB3FFFFFF),
-                                        ),
+                                      24, 170, 0, 0),
+                                  child: AuthUserStreamWidget(
+                                    child: Text(
+                                      valueOrDefault(
+                                              currentUserDocument?.npm, 0)
+                                          .toString(),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText2
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryColor,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
