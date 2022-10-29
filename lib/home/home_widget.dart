@@ -1005,7 +1005,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       logFirebaseEvent(
                                                           'Button_launch_u_r_l');
                                                       await launchURL(
-                                                          'https://app.tinr22.me');
+                                                          homeMiscRecord!
+                                                              .updateURL!);
                                                     },
                                                     text: 'Unduh',
                                                     options: FFButtonOptions(

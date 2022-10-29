@@ -13,13 +13,16 @@ abstract class MiscRecord implements Built<MiscRecord, MiscRecordBuilder> {
 
   int? get currentVersion;
 
+  String? get updateURL;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   static void _initializeBuilder(MiscRecordBuilder builder) => builder
     ..isUpdate = false
-    ..currentVersion = 0;
+    ..currentVersion = 0
+    ..updateURL = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('misc');
@@ -44,13 +47,15 @@ abstract class MiscRecord implements Built<MiscRecord, MiscRecordBuilder> {
 Map<String, dynamic> createMiscRecordData({
   bool? isUpdate,
   int? currentVersion,
+  String? updateURL,
 }) {
   final firestoreData = serializers.toFirestore(
     MiscRecord.serializer,
     MiscRecord(
       (m) => m
         ..isUpdate = isUpdate
-        ..currentVersion = currentVersion,
+        ..currentVersion = currentVersion
+        ..updateURL = updateURL,
     ),
   );
 
